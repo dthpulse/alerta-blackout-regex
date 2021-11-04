@@ -17,6 +17,18 @@ from alertaclient.api import Client
 from alerta.plugins import PluginBase
 from alertaclient.models.blackout import Blackout
 
+'''
+requires python-dotenv module
+and environment variables to be set in /etc/environment file:
+ALERTA_API_KEY=<API KEY>
+ALERTA_ENDPOINT=https://alerta-server.com/api
+'''
+from dotenv import load_dotenv
+from pathlib import Path
+dotenv_path = Path('/etc/environment')
+load_dotenv(dotenv_path=dotenv_path)
+
+
 log = logging.getLogger('alerta.plugins.blackout_regex')
 
 CACHE_ENABLED = os.getenv('ALERTA_BLACKOUT_CACHE_ENABLED', True)
